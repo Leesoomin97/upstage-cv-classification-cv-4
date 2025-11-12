@@ -204,8 +204,6 @@ e.g.
 
 ### Data Processing
 
-- _Describe data processing process (e.g. Data Labeling, Data Cleaning..)_
-
 ## 4. Modeling
 
 ### Model descrition
@@ -219,9 +217,13 @@ e.g.
 ## 5. Result
 
 ### Leader Board
+<img width="1228" height="626" alt="image" src="https://github.com/user-attachments/assets/38a9988d-90f0-4d25-8465-91b7c396d719" />
 
-- _Insert Leader Board Capture_
-- _Write rank and score_
+<img width="1241" height="639" alt="image" src="https://github.com/user-attachments/assets/43fa0ed7-9828-42d7-9651-20d760cf7dd9" />
+<p align="center">
+  중간 순위 0.9852에서 1위에서 최종 순위는 0.9475로 2등으로 결정됨
+</p>
+
 
 ### Presentation
 [![Presentation](https://github.com/user-attachments/assets/42fb1776-4f02-4cac-bbd2-77225e253af6)](https://docs.google.com/presentation/d/1Pc4JzGhqG0PY4wVeC9hVAeT_XcljLxX6/edit?slide=id.g37012e7854d_7_60#slide=id.g37012e7854d_7_60)
