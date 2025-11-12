@@ -224,7 +224,7 @@ e.g.
 - _Write rank and score_
 
 ### Presentation
-[![Presentation](https://github.com/user-attachments/assets/10ff7686-6a52-4f28-94d5-3ef61309a0c2)](https://docs.google.com/presentation/d/1Pc4JzGhqG0PY4wVeC9hVAeT_XcljLxX6/edit?slide=id.g37012e7854d_7_60#slide=id.g37012e7854d_7_60)
+[![Presentation](https://github.com/user-attachments/assets/42fb1776-4f02-4cac-bbd2-77225e253af6)](https://docs.google.com/presentation/d/1Pc4JzGhqG0PY4wVeC9hVAeT_XcljLxX6/edit?slide=id.g37012e7854d_7_60#slide=id.g37012e7854d_7_60)
 
 <p align="center">
   이미지를 누르면 상세한 PPT를 볼 수 있습니다.
@@ -265,3 +265,4 @@ e.g.
 - 🤖 [HuggingFace SwinIR models](https://huggingface.co/models?other=swin-ir)
 - 📄 [Learning Loss for Test-Time Augmentation (arXiv:2010.11422)](https://arxiv.org/abs/2010.11422)
 - 📚 [EfficientNet Documentation - tfimm](https://tfimm.readthedocs.io/en/latest/content/efficientnet.html#tfimm.architectures.efficientnet.EfficientNet)
+- 📖 [데이터 증강을 통한 딥 러닝 네트워크 정확도 향상 방법 - 조수영 박사 논문 (한국교육학술정보원)](https://scienceon.kisti.re.kr/srch/selectPORSrchArticle.do?cn=DIKO0015551607)
