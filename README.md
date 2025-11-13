@@ -218,9 +218,11 @@ ID	평가 샘플의 파일명
 target	예측 결과가 입력될 컬럼 (초기값: 0)
 <p align="center"> <img width="284" height="413" alt="sample_submission.csv 예시" src="https://github.com/user-attachments/assets/e2d75ae3-276c-46ba-8f2a-200114875932" /> </p>
 
+---
 
 ### 🔍 EDA (Exploratory Data Analysis)
-EDA Process
+
+#### EDA Process
 
 학습 데이터(train.csv)와 meta.csv를 분석하여 17개의 클래스 분포와 파일 수를 확인함
 
@@ -230,13 +232,15 @@ EDA Process
 
 텍스트 기반 분석(OCR)도 시도했으나, 손상된 이미지로 인해 글자 인식률이 낮아 활용 불가 판정
 
-EDA Conclusion
+#### EDA Conclusion
 
 데이터의 품질과 조도 차이가 모델 성능에 큰 영향을 미칠 것으로 판단
 
 이에 따라, 이후 단계에서 노이즈 제거와 색상 보정 중심의 전처리 강화 방향으로 결정
 
 데이터 불균형과 이미지 훼손 문제를 해결하기 위한 전처리 및 학습 전략 수립 완료
+
+---
 
 ### ⚙️ Data Processing
 
@@ -260,8 +264,11 @@ Stage별 전처리 파이프라인 자동화
 
 각 단계별 전처리 기능을 스크립트화하여 자동 실행 구조로 관리
 
+---
+
 ### 🧠 Modeling
-Model Description
+
+#### Model Description
 
 여러 구조적 특성을 비교하기 위해 다양한 모델을 실험적으로 적용:
 
@@ -281,8 +288,11 @@ ConvNeXt는 현대적인 CNN 구조로 복잡한 질감·패턴 인식에 강함
 
 ViT는 글자·질감 등 장거리 시각 정보 학습에 효과적이어서 조합 시 상호보완적 구조 가능
 
+---
+
 ### 🚀 Modeling Process
-Training & Testing
+
+#### Training & Testing
 
 Stage별 학습 구조화:
 
@@ -298,13 +308,15 @@ wandb를 활용하여:
 
 Test Time Augmentation (TTA) 을 시도했으나, 일부 케이스에서 오히려 성능 하락 → 최적 조합만 선별 적용
 
+---
+
 ## 🏆 Final Result & Ensemble
 
 최종적으로 상위 성능 모델들의 결과를 하드보팅(Hard Voting) 으로 앙상블
 
 제출했던 여러 리더보드 CSV 중 상위 7개 결과를 하드보팅한 조합에서 최고 성능 달성
 
-최종 Public Leaderboard 점수: 0.9499 (2위)
+### 최종 Public Leaderboard 점수: 0.9499 (2위)
 
 ## 5. Result
 
