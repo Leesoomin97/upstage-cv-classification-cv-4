@@ -176,43 +176,135 @@ output : 주어진 이미지의 클래스
 
 - _Insert your directory structure_
 
-e.g.
-```
-├── code
-│   ├── jupyter_notebooks
-│   │   └── model_train.ipynb
-│   └── train.py
-├── docs
-│   ├── pdf
-│   │   └── (Template) [패스트캠퍼스] Upstage AI Lab 1기_그룹 스터디 .pptx
-│   └── paper
-└── input
-    └── data
-        ├── eval
-        └── train
-```
 
 ## 3. Data descrption
 
 ### Dataset overview
 
-- _Explain using data_
+🧠 학습 데이터셋 (Training Dataset)
+📁 train/ 폴더
 
-### EDA
+총 1,570장의 이미지가 저장되어 있습니다.
 
-- _Describe your EDA process and step-by-step conclusion_
+📄 train.csv
 
-### Data Processing
+총 1,570개 행(row) 으로 구성되어 있으며, train/ 폴더의 이미지와 정답 클래스 정보를 제공합니다.
 
-## 4. Modeling
+컬럼명	설명
+ID	학습 샘플의 파일명
+target	학습 샘플의 정답 클래스 번호
+<p align="center"> <img width="276" height="413" alt="train.csv 예시" src="https://github.com/user-attachments/assets/47ca222e-a938-488e-9b3a-f0286cbfc195" /> </p>
+📄 meta.csv
 
-### Model descrition
+총 17개 행(row) 으로 구성되어 있으며, 클래스 번호(target)와 클래스 이름(class_name)의 매핑 정보를 제공합니다.
 
-- _Write model information and why your select this model_
+컬럼명	설명
+target	클래스 번호 (0 ~ 16)
+class_name	클래스 이름
+<p align="center"> <img width="331" height="414" alt="meta.csv 예시" src="https://github.com/user-attachments/assets/25d14a21-f97f-4ba1-ac16-095a2f786d10" /> </p>
+🧩 평가 데이터셋 (Evaluation Dataset)
+📁 test/ 폴더
 
-### Modeling Process
+총 3,140장의 이미지가 저장되어 있습니다.
 
-- _Write model train and test process with capture_
+일부 이미지는 랜덤한 회전(Rotation), 뒤집기(Flip), 훼손(Distortion) 등의 변형이 적용되어 있습니다.
+
+📄 sample_submission.csv
+
+총 3,140개 행(row) 으로 구성되어 있으며, 제출 시 예측 결과(target)를 채워야 합니다.
+
+컬럼명	설명
+ID	평가 샘플의 파일명
+target	예측 결과가 입력될 컬럼 (초기값: 0)
+<p align="center"> <img width="284" height="413" alt="sample_submission.csv 예시" src="https://github.com/user-attachments/assets/e2d75ae3-276c-46ba-8f2a-200114875932" /> </p>
+
+
+### 🔍 EDA (Exploratory Data Analysis)
+EDA Process
+
+학습 데이터(train.csv)와 meta.csv를 분석하여 17개의 클래스 분포와 파일 수를 확인함
+
+클래스 간 데이터 불균형이 존재함을 확인 → 이후 학습 시 클래스 가중치 보정 전략을 적용하기로 결정
+
+이미지 품질을 육안으로 점검한 결과, 일부 이미지에서 밝기·노이즈·색상 왜곡이 관찰됨
+
+텍스트 기반 분석(OCR)도 시도했으나, 손상된 이미지로 인해 글자 인식률이 낮아 활용 불가 판정
+
+EDA Conclusion
+
+데이터의 품질과 조도 차이가 모델 성능에 큰 영향을 미칠 것으로 판단
+
+이에 따라, 이후 단계에서 노이즈 제거와 색상 보정 중심의 전처리 강화 방향으로 결정
+
+데이터 불균형과 이미지 훼손 문제를 해결하기 위한 전처리 및 학습 전략 수립 완료
+
+### ⚙️ Data Processing
+
+#### Preprocessing Strategy
+
+팀원별로 서로 다른 전처리 실험을 수행하며 밝기·노이즈·색상 변화의 영향을 비교 평가
+
+실험 결과를 회의에서 공유하고, 효과가 우수했던 전처리 조합 중심으로 통합 결정
+
+#### Key Techniques Used
+
+문서 재질 및 노이즈 중심 전처리 강화
+
+Gaussian Blur, CLAHE (Contrast Limited Adaptive Histogram Equalization), White Balance 등의 실험적 조합 적용
+
+데이터 다양성 확보
+
+매 epoch마다 랜덤 데이터 증강(Augmentation) 을 적용하여 일반화 성능 향상
+
+Stage별 전처리 파이프라인 자동화
+
+각 단계별 전처리 기능을 스크립트화하여 자동 실행 구조로 관리
+
+### 🧠 Modeling
+Model Description
+
+여러 구조적 특성을 비교하기 위해 다양한 모델을 실험적으로 적용:
+
+- EfficientNet-B3 / B4 / B5
+
+- ConvNeXt
+
+- ViT (Vision Transformer)
+
+각 모델의 파라미터 효율성과 시각적 패턴 인식 성능을 검증 후, Ensemble 기반 접근으로 확장
+
+#### Why We Selected These Models
+
+EfficientNet 계열은 파라미터 대비 성능이 우수하고, 작은 데이터셋에서도 안정적
+
+ConvNeXt는 현대적인 CNN 구조로 복잡한 질감·패턴 인식에 강함
+
+ViT는 글자·질감 등 장거리 시각 정보 학습에 효과적이어서 조합 시 상호보완적 구조 가능
+
+### 🚀 Modeling Process
+Training & Testing
+
+Stage별 학습 구조화:
+
+1단계: 전체 데이터를 학습하여 기본 모델 확보
+
+2단계: 유사도가 높은 병원 관련 클래스(3, 7, 14)를 별도 서브모델로 분리 학습 → 세밀한 분류 개선
+
+wandb를 활용하여:
+
+실험 로그 및 하이퍼파라미터 관리
+
+모델별 성능 비교 및 시각화
+
+Test Time Augmentation (TTA) 을 시도했으나, 일부 케이스에서 오히려 성능 하락 → 최적 조합만 선별 적용
+
+## 🏆 Final Result & Ensemble
+
+최종적으로 상위 성능 모델들의 결과를 하드보팅(Hard Voting) 으로 앙상블
+
+제출했던 여러 리더보드 CSV 중 상위 7개 결과를 하드보팅한 조합에서 최고 성능 달성
+
+최종 Public Leaderboard 점수: 0.9499 (2위)
 
 ## 5. Result
 
