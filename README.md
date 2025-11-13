@@ -232,6 +232,9 @@ target	예측 결과가 입력될 컬럼 (초기값: 0)
 
 텍스트 기반 분석(OCR)도 시도했으나, 손상된 이미지로 인해 글자 인식률이 낮아 활용 불가 판정
 
+<img width="2382" height="730" alt="image" src="https://github.com/user-attachments/assets/d9964036-2806-4da0-a027-a2c172f8bf91" />
+
+
 #### EDA Conclusion
 
 데이터의 품질과 조도 차이가 모델 성능에 큰 영향을 미칠 것으로 판단
@@ -239,6 +242,7 @@ target	예측 결과가 입력될 컬럼 (초기값: 0)
 이에 따라, 이후 단계에서 노이즈 제거와 색상 보정 중심의 전처리 강화 방향으로 결정
 
 데이터 불균형과 이미지 훼손 문제를 해결하기 위한 전처리 및 학습 전략 수립 완료
+
 
 ---
 
@@ -255,6 +259,8 @@ target	예측 결과가 입력될 컬럼 (초기값: 0)
 문서 재질 및 노이즈 중심 전처리 강화
 
 Gaussian Blur, CLAHE (Contrast Limited Adaptive Histogram Equalization), White Balance 등의 실험적 조합 적용
+
+<img width="1951" height="595" alt="image" src="https://github.com/user-attachments/assets/5c34c1ae-aa06-411c-b267-39b39a54fa46" />
 
 데이터 다양성 확보
 
@@ -287,6 +293,8 @@ EfficientNet 계열은 파라미터 대비 성능이 우수하고, 작은 데이
 ConvNeXt는 현대적인 CNN 구조로 복잡한 질감·패턴 인식에 강함
 
 ViT는 글자·질감 등 장거리 시각 정보 학습에 효과적이어서 조합 시 상호보완적 구조 가능
+
+
 
 ---
 
